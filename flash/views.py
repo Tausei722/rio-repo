@@ -25,7 +25,6 @@ class Template(generic.CreateView,generic.ListView):
     template_name = "flash/index.html"
 
     def get_context_data(self,**kwargs):
-        print(os.getenv('SECRET_KEY'))
         context = super().get_context_data(**kwargs)
         # pdb.set_trace()
         context['form'] = self.get_form()
