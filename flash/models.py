@@ -51,7 +51,7 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
     
 fs = FileSystemStorage(location='videos')
 class Movie(models.Model):
-    title = models.CharField(max_length=50,blank=True,null=True,default="Non title")
+    title = models.CharField(max_length=50,default="Non title")
     movie = models.FileField(upload_to='videos/',storage=fs)
     originally_movie = models.FileField(upload_to='originally/',storage=fs,default=None)
     created = models.DateTimeField(verbose_name="投稿日時", auto_now_add=True, null=False, blank=False)
