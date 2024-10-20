@@ -68,11 +68,16 @@ class Template(generic.CreateView,generic.ListView):
         #     return redirect('failed_save')
 
         if movie:
-            #保存
-            if type(form.request.user.pk) != type(None):
+            # if type(form.request.user.pk) != type(None):
+            #     post_user = CustomUser.objects.get(id=form.request.user.pk)
+            # else:
+            #     post_user = CustomUser.objects.get(id=1)
+            #ログインバリデーション
+            try:
                 post_user = CustomUser.objects.get(id=form.request.user.pk)
-            else:
+            except Exception as e:
                 post_user = CustomUser.objects.get(id=1)
+            #保存
             try:
                 Movie.objects.create(
                     movie = save_path,
