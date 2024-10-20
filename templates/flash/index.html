@@ -27,7 +27,7 @@
     </div>
 </form>
 
-<a href="{{session.cloudinary_video.url}}">
+<!-- <a href="{{session.cloudinary_video.url}}">
     <div class="box">
         <div class="field card-content">
             <label class="label">あなたの動画</label>
@@ -39,7 +39,8 @@
             </div>
         </div></br>
     </div>
-</a>
+</a> -->
+{{session}}
 
 {% for movie in movies %}
 {% if movie.rio_recommendation %}
