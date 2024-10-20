@@ -26,7 +26,21 @@
         </div>
     </div>
 </form>
-{{session}}
+{{for movie in session}}
+<a href="{{movie.cloudinary_video.url}}">
+    <div class="box">
+        <div class="field card-content">
+            <label class="label">あなたの動画</label>
+            <div class="control">
+                <figure class="image is-4by3">
+                    <img src="{{movie.cloudinary_thumbnail.url}}" alt="">
+                </figure><br>
+                <a href="{{movie.movie.url}}" download="{movie.name}">ダウンロードする</a>
+            </div>
+        </div></br>
+    </div>
+    </a>
+{% endfor %}
 {% for movie in movies %}
 {% if movie.rio_recommendation %}
 {% if movie.public %}
