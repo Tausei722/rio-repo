@@ -165,7 +165,7 @@ USE_TZ = True
 #それを示すURLをhtmlで読み込ませればいいはずなのにSTATIC_ROOTにコピーされていない
 #STATIC_ROOTにSTATICFILES_DIRSをcollectコマンドでコピーするルールを破るのはよくない
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+STATIC_URL = '/static/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
