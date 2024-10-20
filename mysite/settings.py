@@ -190,3 +190,6 @@ ALLOWED_HOSTS = ['rio-app-d82eb8d186ab.herokuapp.com']
 CORS_ORIGIN_ALLOW_ALL = True
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cookies'
+# SESSION_COOKIE_HTTPONLY = True

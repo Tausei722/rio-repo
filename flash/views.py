@@ -30,6 +30,7 @@ class Template(generic.CreateView,generic.ListView):
         context['form'] = self.get_form()
         context['movies'] = Movie.objects.all()
 
+        context['session'] = self.request.session['movie']
         return context
 
     def form_valid(form,self,**kwargs):
@@ -79,7 +80,7 @@ class Template(generic.CreateView,generic.ListView):
                 post_user = CustomUser.objects.get(id=1)
             #保存
             try:
-                Movie.objects.create(
+                success_create_movie = Movie.objects.create(
                     movie = save_path,
                     originally_movie = originally_path,
                     post_user = post_user,
@@ -87,6 +88,9 @@ class Template(generic.CreateView,generic.ListView):
                     cloudinary_thumbnail = thumbnail[1],
                     cloudinary_video = movie[0],
                 ).save()
+                #作成した動画をセッションに保存
+                if not 'movie' in form.request.session:
+                    form.request.session['movie'] = success_create_movie
                 return redirect('success_save')
             except Exception as e:
                 return redirect('failed_save')
