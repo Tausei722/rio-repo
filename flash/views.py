@@ -79,7 +79,7 @@ class Template(generic.CreateView,generic.ListView,SessionBase):
             try:
                 post_user = CustomUser.objects.get(id=form.request.user.pk)
             except Exception as e:
-                post_user = CustomUser.objects.get(id=1)
+                post_user = CustomUser.objects.get(username='rio_authenticator')
             #保存
             try:
                 success_create_movie = Movie.objects.create(
