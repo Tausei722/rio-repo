@@ -173,6 +173,7 @@ class MyPage(UserPassesTestMixin, generic.DetailView, MoviePostMixin):
 
         #ここから
         movies = Movie.objects.filter(post_user=self.request.user.pk)
+        movies.reverse()
 
         if movies == None:
             context['movies'] = Movie.objects.get(id=7)
