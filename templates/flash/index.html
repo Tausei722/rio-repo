@@ -28,6 +28,7 @@
 </form>
 {% for movie in movies %}
 {% if movie.rio_recommendation %}
+{% if movie.public %}
 <a href="{{movie.cloudinary_video.url}}">
 <div class="box">
     <div class="field card-content">
@@ -41,6 +42,7 @@
     </div></br>
 </div>
 </a>
+{% endif %}
 {% endif %}
 {% endfor %}
 {% endblock %}
