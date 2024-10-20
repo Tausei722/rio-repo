@@ -82,7 +82,7 @@ class Template(generic.CreateView,generic.ListView,SessionBase):
                 post_user = CustomUser.objects.get(username='rio_authenticator')
             #保存
             try:
-                success_create_movie = Movie.objects.create(
+                Movie.objects.create(
                     movie = save_path,
                     originally_movie = originally_path,
                     post_user = post_user,
@@ -91,11 +91,16 @@ class Template(generic.CreateView,generic.ListView,SessionBase):
                     cloudinary_video = movie[0],
                 ).save()
                 #作成した動画をセッションに保存
-                new_movie_id = success_create_movie.id
+                # new_movie_id = success_create_movie.id
                 if not 'movie' in form.request.session:
-                    form.request.session.clear()
-                    form.request.session.flush()
-                    form.request.session['movie'] = Movie.objects.get(id=new_movie_id)
+                    form.request.session['movie'] = Movie.objects.create(
+                    movie = save_path,
+                    originally_movie = originally_path,
+                    post_user = post_user,
+                    thumbnail = thumbnail[0],
+                    cloudinary_thumbnail = thumbnail[1],
+                    cloudinary_video = movie[0],
+                )
                 return redirect('success_save')
             except Exception as e:
                 return redirect('failed_save')
