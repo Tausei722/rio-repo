@@ -32,15 +32,11 @@
         <div class="field card-content">
             <label class="label">あなたの動画</label>
             <div class="control">
-                <figure class="image is-4by3">
-                    <img src="{{session.cloudinary_thumbnail.url}}" alt="">
-                </figure><br>
                 <a href="{{session.movie.url}}" download="{session.name}">ダウンロードする</a>
             </div>
         </div></br>
     </div>
 </a>
-{{session}}
 
 {% for movie in movies %}
 {% if movie.rio_recommendation %}
