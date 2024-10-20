@@ -30,7 +30,7 @@ class Template(generic.CreateView,generic.ListView,SessionBase):
         context['form'] = self.get_form()
         context['movies'] = Movie.objects.all()
         if not 'movie' in self.request.session:
-            pass
+            context['session'] = "なし"
         else:
             context['session'] = self.request.session['movie']
         return context
