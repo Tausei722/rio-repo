@@ -29,8 +29,10 @@ class Template(generic.CreateView,generic.ListView,SessionBase):
         # pdb.set_trace()
         context['form'] = self.get_form()
         context['movies'] = Movie.objects.all()
-
-        context['session'] = self.request.session['movie']
+        if not 'movie' in self.request.session:
+            pass
+        else:
+            context['session'] = self.request.session['movie']
         return context
 
     def form_valid(form,self,**kwargs):
