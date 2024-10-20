@@ -32,12 +32,12 @@
         <div class="field card-content">
             <label class="label">あなたの動画</label>
             <div class="control">
-                <a href="{{session.movie.url}}" download="{session.name}">ダウンロードする</a>
+                <a href="{{session.movie.url}}" download="{session.movie}">ダウンロードする</a>
             </div>
-        </div></br>
+        </div>
     </div>
 </a>
-
+{{session}}
 {% for movie in movies %}
 {% if movie.rio_recommendation %}
 {% if movie.public %}
