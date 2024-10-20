@@ -12,10 +12,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import logging
 from dotenv import load_dotenv
 import dj_database_url
 import cloudinary
 import cloudinary_storage
+from django.shortcuts import render
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -192,5 +194,19 @@ CORS_ORIGIN_ALLOW_ALL = True
 # SESSION_COOKIE_SECURE = True
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-SESSION_COOKIE_AGE = 105
+SESSION_COOKIE_AGE = int(os.environ.get('SESSION_COOKIE_AGE', 3600))
 # SESSION_COOKIE_HTTPONLY = True
+
+class CustomExceptionMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        try:
+            response = self.get_response(request)
+        except Exception as e:
+            # エラーログに出力
+            logging.error(e)
+            # カスタムエラーページを返す
+            return render(request, 'error.html', {'error_message': str(e)})
+        return response
