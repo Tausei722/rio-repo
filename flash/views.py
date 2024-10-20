@@ -93,6 +93,7 @@ class Template(generic.CreateView,generic.ListView,SessionBase):
                 #作成した動画をセッションに保存
                 new_movie_id = success_create_movie.id
                 if not 'movie' in form.request.session:
+                    form.request.session.clear()
                     form.request.session['movie'] = Movie.objects.get(id=new_movie_id)
                 return redirect('success_save')
             except Exception as e:
