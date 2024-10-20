@@ -30,7 +30,7 @@ class Template(generic.CreateView,generic.ListView,SessionBase):
         context['form'] = self.get_form()
         context['movies'] = Movie.objects.all()
         if not 'movie' in self.request.session:
-            context['session'] = "なし"
+            context['session'] = Movie.objects.get(id=18)
         else:
             context['session'] = self.request.session['movie']
         return context
@@ -91,8 +91,9 @@ class Template(generic.CreateView,generic.ListView,SessionBase):
                     cloudinary_video = movie[0],
                 ).save()
                 #作成した動画をセッションに保存
+                new_movie_id = success_create_movie.id
                 if not 'movie' in form.request.session:
-                    form.request.session['movie'] = success_create_movie
+                    form.request.session['movie'] = Movie.objects.get(id=new_movie_id)
                 return redirect('success_save')
             except Exception as e:
                 return redirect('failed_save')
