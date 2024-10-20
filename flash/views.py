@@ -30,6 +30,7 @@ class Template(generic.CreateView,generic.ListView,SessionBase):
         context['form'] = self.get_form()
         context['movies'] = Movie.objects.all()
         if not 'movie' in self.request.session:
+            context['session'].remove()
             context['session'] = Movie.objects.get(id=18)
         else:
             context['session'] = self.request.session['movie']
@@ -94,6 +95,7 @@ class Template(generic.CreateView,generic.ListView,SessionBase):
                 new_movie_id = success_create_movie.id
                 if not 'movie' in form.request.session:
                     form.request.session.clear()
+                    form.request.session.flush()
                     form.request.session['movie'] = Movie.objects.get(id=new_movie_id)
                 return redirect('success_save')
             except Exception as e:
