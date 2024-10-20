@@ -40,10 +40,10 @@
                         <div class="control">
                             {% if movie.public %}
                             <input type="text" name="public" id="" style="display: none;" value="{{movie.id}}">
-                                <button class="button is-danger has-text-centered" id="myButton">公開</button>
+                                <button class="button is-danger has-text-centered" id="myButton">非公開にする</button>
                             {% else %}
                             <input type="text" name="private" id="" style="display: none;" value="{{movie.id}}">
-                                <button class="button is-danger has-text-centered" id="myButton">非公開</button>
+                                <button class="button is-danger has-text-centered" id="myButton">公開にする</button>
                             {% endif %}
                         </div>
                     </div>
