@@ -17,9 +17,9 @@ from .forms import UserRegistrationForm, MovieForm
 from .edit import recognition,make_movie,create_thumbnail
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.sessions.backends.base import SessionBase
 
-
-class Template(generic.CreateView,generic.ListView):
+class Template(generic.CreateView,generic.ListView,SessionBase):
     model = Movie
     form_class = MovieForm
     template_name = "flash/index.html"
