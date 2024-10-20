@@ -173,10 +173,10 @@ class MyPage(UserPassesTestMixin, generic.DetailView, MoviePostMixin):
 
         #ここから
         movies = Movie.objects.filter(post_user=self.request.user.pk)
-        movies.reverse()
+        movies = list(reversed(movies))
 
         if movies == None:
-            context['movies'] = Movie.objects.get(id=7)
+            context['movies'] = Movie.objects.get(id=18)
         else:
             context['movies'] = movies
         return context
