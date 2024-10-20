@@ -60,7 +60,7 @@ def make_movie(path,texts):
     file_name = os.path.basename(path)
     path_name = path.rsplit(file_name,1)[0]
     output_path = os.path.join(media_path, 'リオ式'+file_name)
-    write = final_clip.write_videofile(output_path)
+    write = final_clip.write_videofile(output_path,fps=30,threads=1,codec='libx264')
     # 保存した画像を読み込んで、ContentFileを作成
     with open(output_path, 'rb') as f:
         content_file = ContentFile(f.read())
