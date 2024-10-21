@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 import logging
+from django.http import Http404
 from dotenv import load_dotenv
 import dj_database_url
 import cloudinary
@@ -204,9 +205,19 @@ class CustomExceptionMiddleware:
     def __call__(self, request):
         try:
             response = self.get_response(request)
+        except Http404:
+            return render(request, 'error.html', status=404)
         except Exception as e:
-            # エラーログに出力
+            # 500エラーの場合
             logging.error(e)
-            # カスタムエラーページを返す
-            return render(request, 'error.html', {'error_message': str(e)})
-        return response
+            return render(request, 'error.html', {'error_message': str(e)}, status=500)
+    #     return response
+    # def __call__(self, request):
+    #     try:
+    #         response = self.get_response(request)
+    #     except Exception as e:
+    #         # エラーログに出力
+    #         logging.error(e)
+    #         # カスタムエラーページを返す
+    #         return render(request, 'error.html', {'error_message': str(e)})
+    #     return response

@@ -9,9 +9,9 @@
     <title>Document</title>
 </head>
 <body>
-    {{e}}
+    {{error_message}}
     <div class="has-text-centered box">
-        <h1>通信に失敗しました。</h1>
+        <h1>通信に失敗しました。動画の形式が間違っているかもしれません</h1>
         <br>
         <form action="{% url 'home' %}" method="POST" enctype="multipart/form-data" >
             {% csrf_token %}
