@@ -47,7 +47,7 @@ def make_movie(path,texts):
         #その単語のテキストを生成
         start_second = float(text['start'])
         end_second = float(text['end'])
-        txtclip = TextClip(text['word'],font='AppliMincho/SourceHanSansJP-Heavy.otf',fontsize=int(height*0.2),color='white',stroke_width=4,stroke_color='black').subclip(start_second,end_second)
+        txtclip = TextClip(text['word'],font='AppliMincho/SourceHanSansJP-Heavy.otf',fontsize=int(height*0.21),color='white',stroke_width=4,stroke_color='black').subclip(start_second,end_second)
         txtclip = txtclip.set_start(start_second)
         #配列に順番に入れる
         array.append(txtclip)
