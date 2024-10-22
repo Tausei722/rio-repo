@@ -19,8 +19,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.sessions.backends.base import SessionBase
 
-from django.http import Http404
-from django.shortcuts import render
+# from django.http import Http404
+# from django.shortcuts import render
 
 class Template(generic.CreateView,generic.ListView,SessionBase):
     model = Movie
@@ -226,17 +226,17 @@ class MyPage(UserPassesTestMixin, generic.DetailView, MoviePostMixin):
         #     print(e)
         #     return super().form_valid(form)
 
-class CustomExceptionMiddleware:
-    def __init__(self, get_response):
-        self.get_response = get_response
+# class CustomExceptionMiddleware:
+#     def __init__(self, get_response):
+#         self.get_response = get_response
 
-    def __call__(self, request):
-        try:
-            response = self.get_response(request)
-        except Http404:
-            # 404エラーの場合
-            return render(request, 'error404.html', status=404)
-        except Exception as e:
-            # 500エラーの場合
-            return render(request, 'error500.html', {'error_message': str(e)}, status=500)
-        return response
+#     def __call__(self, request):
+#         try:
+#             response = self.get_response(request)
+#         except Http404:
+#             # 404エラーの場合
+#             return render(request, 'error404.html', status=404)
+#         except Exception as e:
+#             # 500エラーの場合
+#             return render(request, 'error500.html', {'error_message': str(e)}, status=500)
+#         return response

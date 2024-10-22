@@ -33,7 +33,7 @@ load_dotenv(dotenv_path=dotenv_path)
 SECRET_KEY = os.getenv('SECRET_KEY')
 # SECRET_KEY = 'django-insecure-q%-s8gf-6reuvl(j*fp+n0^whrp0i4_t@aewm6wf8bq2warg=0'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Application definition
 
@@ -59,7 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'mysite.middleware.CustomExceptionMiddleware',
+    # 'mysite.middleware.CustomExceptionMiddleware',
 ]
 MIDDLEWARE_CLASSES = [
     'WhiteNoiseMiddleware',
