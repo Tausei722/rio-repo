@@ -18,9 +18,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import handler404, handler500, handler403, handler400
 
 from .settings import STATIC_ROOT,STATICFILES_DIRS,STATIC_URL,MEDIA_ROOT,MEDIA_URL
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('flash/', include('flash.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)+ static(MEDIA_URL, document_root=MEDIA_ROOT)
+
+handler404 = 'mysite.views.my_custom_page_not_found_view'
+handler500 = 'mysite.views.my_custom_error_view'
+handler403 = 'mysite.views.my_custom_permission_denied_view'
+handler400 = 'mysite.views.my_custom_bad_request_view'
