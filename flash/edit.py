@@ -17,6 +17,7 @@ from moviepy.video.VideoClip import VideoClip
 from django.core.files.base import ContentFile
 from pathlib import Path
 import numpy as np
+from django.http import HttpResponse
 
 import cloudinary
 import cloudinary.uploader
@@ -98,8 +99,9 @@ def download_cloudinary_video(cloudinary_url):
     """
 
     response = requests.get(cloudinary_url, stream=True)
-    save_path = "リオ式.mp4"
-    with open(save_path, 'wb') as f:
+    save_path = HttpResponse(content_type="mp4")
+    save_path['Content-Disposition'] = 'attachment; filename="リオ式.mp4"'
+    with open("リオ式.mp4", 'wb') as f:
         for chunk in response.iter_content(chunk_size=1024):
             if chunk:
                 f.write(chunk)
