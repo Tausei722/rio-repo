@@ -105,3 +105,4 @@ def download_cloudinary_video(cloudinary_url):
         for chunk in response.iter_content(chunk_size=1024):
             if chunk:
                 f.write(chunk)
+    return response
