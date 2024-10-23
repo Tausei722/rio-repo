@@ -101,7 +101,7 @@ def download_cloudinary_video(cloudinary_url):
     response = requests.get(cloudinary_url, stream=True)
     save_path = HttpResponse(content_type="mp4")
     save_path['Content-Disposition'] = 'attachment; filename="リオ式.mp4"'
-    with open("リオ式.mp4", 'wb') as f:
+    with open("ダウンロード/リオ式.mp4", 'wb') as f:
         for chunk in response.iter_content(chunk_size=1024):
             if chunk:
                 f.write(chunk)
