@@ -14,7 +14,7 @@ MEDIA_ROOT = os.path.join(Path(__file__).resolve().parent.parent, 'media')
 
 from .models import CustomUser, Movie
 from .forms import UserRegistrationForm, MovieForm
-from .edit import recognition,make_movie,create_thumbnail
+from .edit import recognition,make_movie,create_thumbnail,download_cloudinary_video
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.sessions.backends.base import SessionBase
@@ -32,6 +32,10 @@ class Template(generic.CreateView,generic.ListView,SessionBase):
         # pdb.set_trace()
         context['form'] = self.get_form()
         context['movies'] = Movie.objects.all()
+
+        cloudinary_url = self.request.GET.get("download")
+        download_cloudinary_video(cloudinary_url)
+
         if not 'movie' in self.request.session:
             context['session'] = None
         else:

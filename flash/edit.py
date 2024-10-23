@@ -3,6 +3,7 @@ import glob
 import json
 import pdb
 import datetime
+import requests
 # os.environ["IMAGEMAGICK_BINARY"] = "C:/Program Files/ImageMagick-7.1.1-Q16/magick.exe"
 import moviepy.editor as mp
 import moviepy.editor
@@ -86,3 +87,19 @@ def create_thumbnail(path):
     # public_id = str(datetime.datetime.now())
     # custom_url = cloudinary.CloudinaryImage(public_id).build_url(format="jpeg")
     return output_path,result['secure_url']
+
+def download_cloudinary_video(cloudinary_url):
+    """
+    Cloudinaryの動画をダウンロードする関数
+
+    Args:
+        cloudinary_url (str): Cloudinaryの動画URL
+        save_path (str): 保存先のファイルパス
+    """
+
+    response = requests.get(cloudinary_url, stream=True)
+    save_path = "リオ式.mp4"
+    with open(save_path, 'wb') as f:
+        for chunk in response.iter_content(chunk_size=1024):
+            if chunk:
+                f.write(chunk)
