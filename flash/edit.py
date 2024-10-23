@@ -99,7 +99,7 @@ def download_cloudinary_video(cloudinary_url):
     """
 
     response = requests.get(cloudinary_url, stream=True)
-    save_path = HttpResponse(content_type="mp4")
+    save_path = HttpResponse(content="mp4")
     save_path['Content-Disposition'] = 'attachment; filename="リオ式.mp4"'
     save_path.write()
     with open(MEDIA_ROOT, 'wb') as f:
