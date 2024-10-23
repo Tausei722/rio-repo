@@ -33,8 +33,9 @@ class Template(generic.CreateView,generic.ListView,SessionBase):
         context['form'] = self.get_form()
         context['movies'] = Movie.objects.all()
 
-        cloudinary_url = self.request.GET.get("download")
-        download_cloudinary_video(cloudinary_url)
+        if self.request.GET.get("download"):
+            cloudinary_url = self.request.GET.get("download")
+            download_cloudinary_video(cloudinary_url)
 
         if not 'movie' in self.request.session:
             context['session'] = None
