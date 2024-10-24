@@ -102,7 +102,7 @@ def download_cloudinary_video(cloudinary_url):
     save_path = HttpResponse(content="video/mp4")
     save_path['Content-Disposition'] = 'attachment; filename="リオ式.mp4"'
     save_path.write('https://rio-app-d82eb8d186ab.herokuapp.com/media/videos')
-    with open('https://rio-app-d82eb8d186ab.herokuapp.com/media/videos', 'wb') as f:
+    with open('https://rio-app-d82eb8d186ab.herokuapp.com/staticfiles', 'wb') as f:
         for chunk in response.iter_content(chunk_size=1024):
             if chunk:
                 f.write(chunk)
