@@ -29,7 +29,7 @@
         {% if movies %}
             {% for movie in movies %}
             <div class="box columns">
-                <a href="{{movie.cloudinary_video.url}}" class="column is-8">{{movie.movie.name}}
+                <a href="{{movie.cloudinary_video.url}}.mp4" class="column is-8">{{movie.movie.name}}
                     <div class="column image is-4by3">
                         <img src="{{movie.cloudinary_thumbnail.url}}" alt="">
                     </div>
