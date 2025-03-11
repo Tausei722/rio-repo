@@ -198,7 +198,8 @@ AUTH_USER_MODEL = 'flash.CustomUser'
 # CORS_ALLOWED_ORIGIN_REGEX = r'^https://rio-app-d82eb8d186ab\.herokuapp\.com$'
 # CSRF_COOKIE_DOMAIN = '.herokuapp.com'
 ALLOWED_HOSTS = ["rio-flash-d87e13e7eca3.herokuapp.com"]
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
+CSRF_TRUSTED_ORIGINS = ['https://rio-flash-d87e13e7eca3.herokuapp.com']
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True
 
