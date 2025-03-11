@@ -19,6 +19,9 @@ import dj_database_url
 import cloudinary
 import cloudinary_storage
 from django.shortcuts import render
+import cloudinary.api
+import cloudinary.uploader
+from cloudinary.utils import cloudinary_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -98,19 +101,21 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # }
 DATABASES = {
     'default': {
-    'ENGINE':'django.db.backends.postgresql',
-    'NAME': os.getenv('DB_NAME'),
-    'USER': os.getenv('DB_USER'),
-    'PASSWORD': os.getenv('DB_PASSWORD'),
-    'HOST': os.getenv('DB_HOST'),
-    'PORT': os.getenv('DB_PORT'),
-    # 'NAME': 'delv2baclv0ejf',
-    # 'USER': 'u45n86j6die9je',
-    # 'PASSWORD': 'pf164df82c00df1b3736dcf71670dbabb00dd3c3d2dd380d433b4ccd8fa5f3414',
-    # 'HOST': 'ec2-23-23-160-238.compute-1.amazonaws.com',
-    # 'PORT': 5432,
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
+    }
 }
-}
+
+print(f"DATABASE_URL: {os.getenv('DATABASE_URL')}")
+print(f"DB_NAME: {os.getenv('DB_NAME')}")
+print(f"DB_USER: {os.getenv('DB_USER')}")
+print(f"DB_PASSWORD: {os.getenv('DB_PASSWORD')}")
+print(f"DB_HOST: {os.getenv('DB_HOST')}")
+print(f"DB_PORT: {os.getenv('DB_PORT')}")
 
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 # Password validation
@@ -136,10 +141,12 @@ CLOUDINARY_STORAGE  = {
     'CLOUD_NAME':os.getenv('CLOUDINARY_NAME'),
     'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
-    # 'CLOUD_NAME': 'dumlzpddn',
-    # 'API_KEY': 231167484435616,
-    # 'API_SECRET': '-eZ0nip0L202BnTt0JfF3UQLS1k',
 }
+cloudinary.config(
+  cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),
+  api_key=os.getenv('CLOUDINARY_API_KEY'),
+  api_secret=os.getenv('CLOUDINARY_API_SECRET')
+)
 # settings.py
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
@@ -185,12 +192,12 @@ AUTH_USER_MODEL = 'flash.CustomUser'
 
 # settings.py
 # CSRF_FAILURE_VIEW = 'flash.views.csrf_custom_view'
-CSRF_TRUSTED_ORIGINS = ['https://rio-app-d82eb8d186ab.herokuapp.com']
+# CSRF_TRUSTED_ORIGINS = ['https://rio-app-d82eb8d186ab.herokuapp.com']
 # CSRF_ALLOWED_ORIGINS = ['https://rio-app-d82eb8d186ab.herokuapp.com']
 # CORS_ORIGIN_WHITELIST = ['https://*.rio-app-d82eb8d186ab.herokuapp.com']
 # CORS_ALLOWED_ORIGIN_REGEX = r'^https://rio-app-d82eb8d186ab\.herokuapp\.com$'
 # CSRF_COOKIE_DOMAIN = '.herokuapp.com'
-ALLOWED_HOSTS = ['rio-app-d82eb8d186ab.herokuapp.com']
+ALLOWED_HOSTS = []
 CORS_ORIGIN_ALLOW_ALL = True
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True
