@@ -84,6 +84,7 @@ def create_thumbnail(path):
     with open(output_path, 'rb') as f:
         content_file = ContentFile(f.read())
     # cloudinaryにアップロード
+    print(content_file)
     result = cloudinary.uploader.upload(content_file, public_id=str(datetime.datetime.now()), resource_type="image", format="jpeg")
     # public_id = str(datetime.datetime.now())
     # custom_url = cloudinary.CloudinaryImage(public_id).build_url(format="jpeg")
