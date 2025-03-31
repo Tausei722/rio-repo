@@ -142,7 +142,7 @@ AUTH_PASSWORD_VALIDATORS = [
 #     'API_SECRET': '5EBl4PLbBFaQV4rNp-mfPmBkQOc',
 # }
 cloudinary.config(
-  cloud_name=os.getenv('CLOUDINARY_NAME'),
+  cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),
   api_key=os.getenv('CLOUDINARY_API_KEY'),
   api_secret=os.getenv('CLOUDINARY_API_SECRET')
 )
