@@ -11,5 +11,8 @@ setup:
     APP_DATABASE_HOST: ${DB_HOST}
     APP_DATABASE_PASSWORD: ${DB_PASSWORD}
     APP_DATABASE_USERNAME: ${DB_USER}
+    CLOUDINARY_CLOUD_NAME: ${CLOUDINARY_NAME}
+    CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY}
+    CLOUDINARY_API_SECRET: ${CLOUDINARY_API_SECRET}
 run:
   web: bash -c "python manage.py makemigrations; python manage.py migrate; python manage.py createsuperuser --noinput --username $USERNAME --email $EMAIL --password $PASSWORD; python manage.py collectstatic --noinput; python manage.py runserver 0.0.0.0:$PORT;"
