@@ -4,7 +4,7 @@ build:
 setup:
   addons:
   - plan: heroku-postgresql
-    as: rio_database
+    as: d8372dbqrc7v06
   config:
     DATABASE_URL: ${DB_URL}
     SECRET_KEY: ${SECRET_KEY}
