@@ -136,11 +136,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 #動画保存のためのツール設定
-CLOUDINARY_STORAGE  = {
-    'CLOUD_NAME':'hyav2pftt',
-    'API_KEY': '5466878680be882e1189b5584da179',
-    'API_SECRET': '5EBl4PLbBFaQV4rNp-mfPmBkQOc',
-}
+# CLOUDINARY_STORAGE  = {
+#     'CLOUD_NAME':'hyav2pftt',
+#     'API_KEY': '5466878680be882e1189b5584da179',
+#     'API_SECRET': '5EBl4PLbBFaQV4rNp-mfPmBkQOc',
+# }
 cloudinary.config(
   cloud_name=os.getenv('CLOUDINARY_NAME'),
   api_key=os.getenv('CLOUDINARY_API_KEY'),
